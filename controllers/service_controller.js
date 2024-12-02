@@ -11,6 +11,26 @@ exports.findAll = (req, res) => {
 }
 
 
+exports.createService = (req, res) => {
+
+    const service = new App({
+        type: req.body.type,
+        code: req.body.code,
+        description: req.body.description,
+        imgUrl: req.body.url,
+        detail: req.body.detail
+    })
+
+    service.save()
+    .then((data) => {
+        res.status(201).json({message: "Service Created Successfully", status: "Success"});
+    })
+    .catch((err) => {
+        res.status(500).json({ message: err.message || "Some error occured while creating service"});
+    })
+}
+
+
 exports.findByType = (req, res) => {
     App.find({type: req.params.type})
     .then((data) => {

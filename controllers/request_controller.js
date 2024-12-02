@@ -1,6 +1,5 @@
 const App = require("../models/requests_schema.js");
 
-
 exports.findAll= (req, res) => {
     App.find()
     .then(data => {
